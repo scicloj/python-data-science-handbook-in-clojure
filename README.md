@@ -2,6 +2,9 @@
 
 These notes reproduce parts of the [code](https://github.com/jakevdp/PythonDataScienceHandbook) of the [Python Data Science Notebook](https://jakevdp.github.io/PythonDataScienceHandbook/) by Jake VanderPlas.
 
+[rendered book](https://scicloj.github.io/python-data-science-handbook-in-clojure/)
+- created with [Clay](https://scicloj.github.io/clay/).
+
 ## License
 
 Copyright © 2024 Scicloj
