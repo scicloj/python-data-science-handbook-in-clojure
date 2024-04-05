@@ -4,7 +4,17 @@
     "href": "index.html",
     "title": "Python Data Science Handbook - in Clojure",
     "section": "",
-    "text": "1 Preface\nThese notes reproduce parts of the code of the Python Data Science Notebook by Jake VanderPlas.\n\nsource: notebooks/index.clj",
+    "text": "1 Preface\nThese notes reproduce parts of the code of the Python Data Science Notebook by Jake VanderPlas.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#current-drafts",
+    "href": "index.html#current-drafts",
+    "title": "Python Data Science Handbook - in Clojure",
+    "section": "1.1 Current drafts:",
+    "text": "1.1 Current drafts:\nPart 5 - Machine Learning\n\nIn Depth: Linear Regression - DRAFT\n\n\nsource: notebooks/index.clj",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
@@ -12,21 +22,21 @@
   {
     "objectID": "pdshic.05_06_linear_regression.html",
     "href": "pdshic.05_06_linear_regression.html",
-    "title": "2  In Depth: Linear Regression",
+    "title": "2  In Depth: Linear Regression - DRAFT",
     "section": "",
-    "text": "2.1 Simple Linear Regression\nPython:\nPython:",
+    "text": "2.1 Simple Linear Regression\nLet us create some random data going approximately along a line.\nOriginal python code:\nWe use efficient array-like processing through dtype-next, but of course we could also use plain map calls for the arithmetic, and it would be just fine for this size of data.\nLet us find an optimal line predicting y by x (“linear regression”).\nOriginal python code:\nNote: the layers function we are using here is still experimental.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>In Depth: Linear Regression</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>In Depth: Linear Regression - DRAFT</span>"
     ]
   },
   {
     "objectID": "pdshic.05_06_linear_regression.html#simple-linear-regression",
     "href": "pdshic.05_06_linear_regression.html#simple-linear-regression",
-    "title": "2  In Depth: Linear Regression",
+    "title": "2  In Depth: Linear Regression - DRAFT",
     "section": "",
-    "text": "rng = np.random.RandomState(1)\nx = 10 * rng.rand(50)\ny = 2 * x - 5 + rng.randn(50)\nplt.scatter(x, y);\n\n(def rng\n  (random/rng 1))\n\n\n(def x\n  (-&gt; (dtype/make-reader :float32 50 (random/drandom rng))\n      (fun/* 10)\n      dtype/clone))\n\n\n(def y\n  (-&gt; x\n      (fun/* 2)\n      (fun/- 5)\n      (fun/+ (dtype/make-reader :float32 50 (random/grandom rng)))\n      dtype/clone))\n\n\n(def scatter\n  (-&gt; {:x x :y y}\n      tc/dataset\n      (hanami/plot ht/point-chart {})))\n\n\nscatter\n\n\n\nfrom sklearn.linear_model import LinearRegression\nmodel = LinearRegression(fit_intercept=True)\n\nmodel.fit(x[:, np.newaxis], y)\n\nxfit = np.linspace(0, 10, 1000)\nyfit = model.predict(xfit[:, np.newaxis])\n\nplt.scatter(x, y)\nplt.plot(xfit, yfit);\n\n(def model\n  (fun/linear-regressor x y))\n\n\n(let [xfit (range 0 10 1/100)\n      yfit (map model xfit)]\n  (hanami/layers nil\n                 {}\n                 [scatter\n                  (-&gt; {:x xfit\n                       :y yfit}\n                      tc/dataset\n                      (hanami/plot ht/line-chart {:MCOLOR \"brown\"}))]))\n\n\n\nsource: notebooks/pdshic/05_06_linear_regression.clj",
+    "text": "rng = np.random.RandomState(1)\nx = 10 * rng.rand(50)\ny = 2 * x - 5 + rng.randn(50)\nplt.scatter(x, y);\n\n(def rng\n  (random/rng 1))\n\n\n\n(def x\n  (-&gt; (dtype/make-reader :float32 50 (random/drandom rng))\n      (fun/* 10)\n      dtype/clone))\n\n\n(def y\n  (-&gt; x\n      (fun/* 2)\n      (fun/- 5)\n      (fun/+ (dtype/make-reader :float32 50 (random/grandom rng)))\n      dtype/clone))\n\n\n(def scatter\n  (-&gt; {:x x :y y}\n      tc/dataset\n      (hanami/plot ht/point-chart {})))\n\n\nscatter\n\n\n\n\nfrom sklearn.linear_model import LinearRegression\nmodel = LinearRegression(fit_intercept=True)\n\nmodel.fit(x[:, np.newaxis], y)\n\nxfit = np.linspace(0, 10, 1000)\nyfit = model.predict(xfit[:, np.newaxis])\n\nplt.scatter(x, y)\nplt.plot(xfit, yfit);\n\n(def model\n  (fun/linear-regressor x y))\n\n\n\n(let [xfit (range 0 10 1/100)\n      yfit (map model xfit)]\n  (hanami/layers nil\n                 {}\n                 [scatter\n                  (-&gt; {:x xfit\n                       :y yfit}\n                      tc/dataset\n                      (hanami/plot ht/line-chart {:MCOLOR \"brown\"}))]))\n\n\n\nsource: notebooks/pdshic/05_06_linear_regression.clj",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>In Depth: Linear Regression</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>In Depth: Linear Regression - DRAFT</span>"
     ]
   }
 ]

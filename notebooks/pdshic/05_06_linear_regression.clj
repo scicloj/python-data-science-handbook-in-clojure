@@ -1,4 +1,4 @@
-;; # In Depth: Linear Regression
+;; # In Depth: Linear Regression - DRAFT
 
 ;; [original chapter](https://jakevdp.github.io/PythonDataScienceHandbook/05.06-linear-regression.html)
 
