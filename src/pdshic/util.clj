@@ -4,6 +4,6 @@
 
 (defn quote-python [code]
   (->> code
-       (format "\nPython:\n```%s```")
+       (format "\nOriginal python code:\n```%s```")
        kind/md
        kindly/hide-code))
