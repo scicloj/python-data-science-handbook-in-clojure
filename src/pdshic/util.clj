@@ -1,4 +1,4 @@
-(ns scicloj.handbook.util
+(ns pdshic.util
   (:require [scicloj.kindly.v4.kind :as kind]
             [scicloj.kindly.v4.api :as kindly]))
 

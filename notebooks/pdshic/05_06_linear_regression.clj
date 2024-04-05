@@ -2,9 +2,9 @@
 
 ;; [original chapter](https://jakevdp.github.io/PythonDataScienceHandbook/05.06-linear-regression.html)
 
-(ns scicloj.handbook.05-06-linear-regression
+(ns pdshic.05-06-linear-regression
   (:require [scicloj.kindly.v4.kind :as kind]
-            [scicloj.handbook.util :as util]
+            [pdshic.util :as util]
             [tablecloth.api :as tc]
             [fastmath.random :as random]
             [scicloj.noj.v1.vis.hanami :as hanami]
