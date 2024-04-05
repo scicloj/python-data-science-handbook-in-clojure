@@ -14,6 +14,7 @@
 
 ;; ## Simple Linear Regression
 
+;; Let us create some random data going approximately along a line.
 (util/quote-python "
 rng = np.random.RandomState(1)
 x = 10 * rng.rand(50)
@@ -21,9 +22,12 @@ y = 2 * x - 5 + rng.randn(50)
 plt.scatter(x, y);
 ")
 
-
 (def rng
   (random/rng 1))
+
+;; We use efficient array-like processing through `dtype-next`,
+;; but of course we could also use plain `map` calls for the arithmetic,
+;; and it would be just fine for this size of data.
 
 (def x
   (-> (dtype/make-reader :float32 50 (random/drandom rng))
@@ -44,6 +48,8 @@ plt.scatter(x, y);
 
 scatter
 
+;; Let us find an optimal line predicting `y` by `x` ("linear regression").
+
 (util/quote-python "
 from sklearn.linear_model import LinearRegression
 model = LinearRegression(fit_intercept=True)
@@ -59,6 +65,8 @@ plt.plot(xfit, yfit);
 
 (def model
   (fun/linear-regressor x y))
+
+;; Note: the `layers` function we are using here is still experimental.
 
 (let [xfit (range 0 10 1/100)
       yfit (map model xfit)]
