@@ -8,7 +8,7 @@ We will add our own text, clarifying the Clojure code and the methods behind it.
 [work-in-proress](https://scicloj.github.io/python-data-science-handbook-in-clojure/)
 
 ## Tooling
-We use the [Kindly](https://scicloj.github.io/kindly-noted/) convention and render the notes sing [Clay](https://scicloj.github.io/clay/) and [Quarto](https://quarto.org/).
+We use the [Kindly](https://scicloj.github.io/kindly-noted/) convention and render the notes using [Clay](https://scicloj.github.io/clay/) and [Quarto](https://quarto.org/).
 
 ## Contributing
 Contributions are welcome, with some coordination regarding the choice of chapters, the style, etc.. A contribution guide will be added soon.
