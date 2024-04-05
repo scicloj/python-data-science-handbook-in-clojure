@@ -10,8 +10,8 @@
     ]
   },
   {
-    "objectID": "scicloj.handbook.05_06_linear_regression.html",
-    "href": "scicloj.handbook.05_06_linear_regression.html",
+    "objectID": "pdshic.05_06_linear_regression.html",
+    "href": "pdshic.05_06_linear_regression.html",
     "title": "2  In Depth: Linear Regression",
     "section": "",
     "text": "2.1 Simple Linear Regression\nPython:\nPython:",
@@ -20,11 +20,11 @@
     ]
   },
   {
-    "objectID": "scicloj.handbook.05_06_linear_regression.html#simple-linear-regression",
-    "href": "scicloj.handbook.05_06_linear_regression.html#simple-linear-regression",
+    "objectID": "pdshic.05_06_linear_regression.html#simple-linear-regression",
+    "href": "pdshic.05_06_linear_regression.html#simple-linear-regression",
     "title": "2  In Depth: Linear Regression",
     "section": "",
-    "text": "rng = np.random.RandomState(1)\nx = 10 * rng.rand(50)\ny = 2 * x - 5 + rng.randn(50)\nplt.scatter(x, y);\n\n(def rng\n  (random/rng 1))\n\n\n(def x\n  (-&gt; (dtype/make-reader :float32 50 (random/drandom rng))\n      (fun/* 10)\n      dtype/clone))\n\n\n(def y\n  (-&gt; x\n      (fun/* 2)\n      (fun/- 5)\n      (fun/+ (dtype/make-reader :float32 50 (random/grandom rng)))\n      dtype/clone))\n\n\n(def scatter\n  (-&gt; {:x x :y y}\n      tc/dataset\n      (hanami/plot ht/point-chart {})))\n\n\nscatter\n\n\n\nfrom sklearn.linear_model import LinearRegression\nmodel = LinearRegression(fit_intercept=True)\n\nmodel.fit(x[:, np.newaxis], y)\n\nxfit = np.linspace(0, 10, 1000)\nyfit = model.predict(xfit[:, np.newaxis])\n\nplt.scatter(x, y)\nplt.plot(xfit, yfit);\n\n(def model\n  (fun/linear-regressor x y))\n\n\n(let [xfit (range 0 10 1/100)\n      yfit (map model xfit)]\n  (hanami/layers nil\n                 {}\n                 [scatter\n                  (-&gt; {:x xfit\n                       :y yfit}\n                      tc/dataset\n                      (hanami/plot ht/line-chart {:MCOLOR \"brown\"}))]))\n\n\n\nsource: notebooks/scicloj/handbook/05_06_linear_regression.clj",
+    "text": "rng = np.random.RandomState(1)\nx = 10 * rng.rand(50)\ny = 2 * x - 5 + rng.randn(50)\nplt.scatter(x, y);\n\n(def rng\n  (random/rng 1))\n\n\n(def x\n  (-&gt; (dtype/make-reader :float32 50 (random/drandom rng))\n      (fun/* 10)\n      dtype/clone))\n\n\n(def y\n  (-&gt; x\n      (fun/* 2)\n      (fun/- 5)\n      (fun/+ (dtype/make-reader :float32 50 (random/grandom rng)))\n      dtype/clone))\n\n\n(def scatter\n  (-&gt; {:x x :y y}\n      tc/dataset\n      (hanami/plot ht/point-chart {})))\n\n\nscatter\n\n\n\nfrom sklearn.linear_model import LinearRegression\nmodel = LinearRegression(fit_intercept=True)\n\nmodel.fit(x[:, np.newaxis], y)\n\nxfit = np.linspace(0, 10, 1000)\nyfit = model.predict(xfit[:, np.newaxis])\n\nplt.scatter(x, y)\nplt.plot(xfit, yfit);\n\n(def model\n  (fun/linear-regressor x y))\n\n\n(let [xfit (range 0 10 1/100)\n      yfit (map model xfit)]\n  (hanami/layers nil\n                 {}\n                 [scatter\n                  (-&gt; {:x xfit\n                       :y yfit}\n                      tc/dataset\n                      (hanami/plot ht/line-chart {:MCOLOR \"brown\"}))]))\n\n\n\nsource: notebooks/pdshic/05_06_linear_regression.clj",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>In Depth: Linear Regression</span>"
     ]

@@ -4,7 +4,7 @@
 (clay/make! {:format [:quarto :html]
              :base-source-path "notebooks"
              :source-path ["index.clj"
-                           "scicloj/handbook/05_06_linear_regression.clj"]
+                           "pdshic/05_06_linear_regression.clj"]
              :base-target-path "docs"
              :book {:title "Python Data Science Handbook - in Clojure"}
              :clean-up-target-dir true})
