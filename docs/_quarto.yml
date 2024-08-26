@@ -4,4 +4,4 @@ format:
 project: {type: book}
 book:
   title: Python Data Science Handbook - in Clojure
-  chapters: [index.qmd, pdshic.05_06_linear_regression.qmd]
+  chapters: [index.qmd, pdshic.02_01_understanding_data_types_in_clojure.qmd, pdshic.05_06_linear_regression.qmd]

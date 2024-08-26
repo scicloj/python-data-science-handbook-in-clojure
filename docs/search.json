@@ -14,29 +14,49 @@
     "href": "index.html#current-drafts",
     "title": "Python Data Science Handbook - in Clojure",
     "section": "1.1 Current drafts:",
-    "text": "1.1 Current drafts:\nPart 5 - Machine Learning\n\nIn Depth: Linear Regression - DRAFT\n\n\nsource: notebooks/index.clj",
+    "text": "1.1 Current drafts:\nPart 2 - Understanding Data Types in Clojure - Introduction to dtype-next\nPart 5 - Machine Learning\n\nIn Depth: Linear Regression - DRAFT\n\n\nsource: notebooks/index.clj",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
   },
   {
+    "objectID": "pdshic.02_01_understanding_data_types_in_clojure.html",
+    "href": "pdshic.02_01_understanding_data_types_in_clojure.html",
+    "title": "2  Understanding Data Types in Clojure",
+    "section": "",
+    "text": "2.1 Creating Arrays from Clojure Lists and Vectors\nOriginal python code:\nThis notation [Ljava.lang.Object; with the open bracket at the beginning, but no closing bracket is the JVM’s way of saying, “An array of the following type.” What follows the [ indicates the types in the array. In this case, the Ljava.lang.Object; means this is just a an array of objects.\ntable source\nAnytime we don’t explicitly give it a datatype, it will be considered an array of objects. It is more useful to provide a type:\nOr…\nOriginal python code:\nUnlike Numpy, dtype won’t automatically infer the data type. It is better to be explicit.\nOriginal python code:\nOriginal python code:\nWe will use tech.v3.tensor as dtt to create multidimensional arrays. Here we indicate the data type in an options map at the end of the arguments list.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Understanding Data Types in Clojure</span>"
+    ]
+  },
+  {
+    "objectID": "pdshic.02_01_understanding_data_types_in_clojure.html#creating-arrays-from-clojure-lists-and-vectors",
+    "href": "pdshic.02_01_understanding_data_types_in_clojure.html#creating-arrays-from-clojure-lists-and-vectors",
+    "title": "2  Understanding Data Types in Clojure",
+    "section": "",
+    "text": "import numpy as np\n# integer array:\nnp.array([1, 4, 2, 5, 3])\n\n(let [arr (dtype/-&gt;array [1 4 2 5 3])]\n  [(type arr) arr])\n\n\n[[Ljava.lang.Object; [1, 4, 2, 5, 3]]\n\n\n\n\n\nElement Type\nEncoding\n\n\n\n\nboolean\nZ\n\n\nbyte\nB\n\n\nchar\nC\n\n\nclass or interface\nLclassname;\n\n\ndouble\nD\n\n\nfloat\nF\n\n\nint\nI\n\n\nlong\nJ\n\n\nshort\nS\n\n\n\n\n\n\n(let [arr (dtype/-&gt;array :int [1 4 2 5 3])]\n  [(type arr) arr])\n\n\n[[I [1, 4, 2, 5, 3]]\n\n\n\n(let [arr (dtype/-&gt;int-array [1 4 2 5 3])]\n  [(type arr) arr])\n\n\n[[I [1, 4, 2, 5, 3]]\n\n\nnp.array([3.14, 4, 2, 3])\narray([ 3.14,  4.  ,  2.  ,  3.  ])\n\n(let [arr (dtype/-&gt;array [3.14 4 2 5 3])]\n  [(type arr) arr])\n\n\n[[Ljava.lang.Object; [3.14, 4, 2, 5, 3]]\n\n\n\nnp.array([1, 2, 3, 4], dtype='float32')\narray([ 1.,  2.,  3.,  4.], dtype=float32)\n\n(let [arr (dtype/-&gt;array :float [3.14 4 2 5 3])]\n  [(type arr) arr])\n\n\n[[F [3.14, 4.0, 2.0, 5.0, 3.0]]\n\n\n# nested lists result in multi-dimensional arrays\nnp.array([range(i, i + 3) for i in [2, 4, 6]])\narray([[2, 3, 4],\n       [4, 5, 6],\n       [6, 7, 8]])\n\n\n(-&gt; (map (fn [n] (range n (+ n 3))) [2 4 6])\n    (dtt/-&gt;tensor {:datatype :int}))\n\n\n#tech.v3.tensor&lt;int32&gt;[3 3]\n[[2 3 4]\n [4 5 6]\n [6 7 8]]\n\n\nsource: notebooks/pdshic/02_01_understanding_data_types_in_clojure.clj",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Understanding Data Types in Clojure</span>"
+    ]
+  },
+  {
     "objectID": "pdshic.05_06_linear_regression.html",
     "href": "pdshic.05_06_linear_regression.html",
-    "title": "2  In Depth: Linear Regression - DRAFT",
+    "title": "3  In Depth: Linear Regression - DRAFT",
     "section": "",
-    "text": "2.1 Simple Linear Regression\nLet us create some random data going approximately along a line.\nOriginal python code:\nWe use efficient array-like processing through dtype-next, but of course we could also use plain map calls for the arithmetic, and it would be just fine for this size of data.\nLet us find an optimal line predicting y by x (“linear regression”).\nOriginal python code:\nNote: the layers function we are using here is still experimental.",
+    "text": "3.1 Simple Linear Regression\nLet us create some random data going approximately along a line.\nOriginal python code:\nWe use efficient array-like processing through dtype-next, but of course we could also use plain map calls for the arithmetic, and it would be just fine for this size of data.\nLet us find an optimal line predicting y by x (“linear regression”).\nOriginal python code:\nNote: the layers function we are using here is still experimental.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>In Depth: Linear Regression - DRAFT</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In Depth: Linear Regression - DRAFT</span>"
     ]
   },
   {
     "objectID": "pdshic.05_06_linear_regression.html#simple-linear-regression",
     "href": "pdshic.05_06_linear_regression.html#simple-linear-regression",
-    "title": "2  In Depth: Linear Regression - DRAFT",
+    "title": "3  In Depth: Linear Regression - DRAFT",
     "section": "",
     "text": "rng = np.random.RandomState(1)\nx = 10 * rng.rand(50)\ny = 2 * x - 5 + rng.randn(50)\nplt.scatter(x, y);\n\n(def rng\n  (random/rng 1))\n\n\n\n(def x\n  (-&gt; (dtype/make-reader :float32 50 (random/drandom rng))\n      (fun/* 10)\n      dtype/clone))\n\n\n(def y\n  (-&gt; x\n      (fun/* 2)\n      (fun/- 5)\n      (fun/+ (dtype/make-reader :float32 50 (random/grandom rng)))\n      dtype/clone))\n\n\n(def scatter\n  (-&gt; {:x x :y y}\n      tc/dataset\n      (hanami/plot ht/point-chart {})))\n\n\nscatter\n\n\n\n\nfrom sklearn.linear_model import LinearRegression\nmodel = LinearRegression(fit_intercept=True)\n\nmodel.fit(x[:, np.newaxis], y)\n\nxfit = np.linspace(0, 10, 1000)\nyfit = model.predict(xfit[:, np.newaxis])\n\nplt.scatter(x, y)\nplt.plot(xfit, yfit);\n\n(def model\n  (fun/linear-regressor x y))\n\n\n\n(let [xfit (range 0 10 1/100)\n      yfit (map model xfit)]\n  (hanami/layers nil\n                 {}\n                 [scatter\n                  (-&gt; {:x xfit\n                       :y yfit}\n                      tc/dataset\n                      (hanami/plot ht/line-chart {:MCOLOR \"brown\"}))]))\n\n\n\nsource: notebooks/pdshic/05_06_linear_regression.clj",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>In Depth: Linear Regression - DRAFT</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>In Depth: Linear Regression - DRAFT</span>"
     ]
   }
 ]
