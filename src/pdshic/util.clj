@@ -1,9 +1,11 @@
 (ns pdshic.util
-  (:require [scicloj.kindly.v4.kind :as kind]
+  (:require [clojure.string :as str]
+            [scicloj.kindly.v4.kind :as kind]
             [scicloj.kindly.v4.api :as kindly]))
 
 (defn quote-python [code]
   (->> code
-       (format "\nOriginal python code:\n```%s```")
+       (str/trim)
+       (format "\nOriginal python code:\n```\n%s\n```")
        kind/md
        kindly/hide-code))
