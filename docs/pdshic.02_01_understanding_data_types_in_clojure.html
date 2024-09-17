@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Understanding Data Types in Clojure – Python Data Science Handbook - in Clojure</title>
+<title>2&nbsp; Understanding Data Types in Clojure DRAFT – Python Data Science Handbook - in Clojure</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./pdshic.05_06_linear_regression.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -102,7 +101,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link rel="icon" href="data:,">
 
 
 </head>
@@ -116,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pdshic.02_01_understanding_data_types_in_clojure.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Understanding Data Types in Clojure</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pdshic.02_01_understanding_data_types_in_clojure.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Understanding Data Types in Clojure DRAFT</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -150,13 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pdshic.02_01_understanding_data_types_in_clojure.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Understanding Data Types in Clojure</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./pdshic.05_06_linear_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In Depth: Linear Regression - DRAFT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Understanding Data Types in Clojure DRAFT</span></span></a>
   </div>
 </li>
     </ul>
@@ -169,7 +161,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#creating-arrays-from-clojure-lists-and-vectors" id="toc-creating-arrays-from-clojure-lists-and-vectors" class="nav-link active" data-scroll-target="#creating-arrays-from-clojure-lists-and-vectors"><span class="header-section-number">2.1</span> Creating Arrays from Clojure Lists and Vectors</a></li>
+  <li><a href="#a-couple-notes-about-vars" id="toc-a-couple-notes-about-vars" class="nav-link active" data-scroll-target="#a-couple-notes-about-vars"><span class="header-section-number">2.0.1</span> A Couple Notes About Vars</a>
+  <ul>
+  <li><a href="#doc-strings" id="toc-doc-strings" class="nav-link" data-scroll-target="#doc-strings"><span class="header-section-number">2.0.1.1</span> Doc-strings</a></li>
+  <li><a href="#defonce" id="toc-defonce" class="nav-link" data-scroll-target="#defonce"><span class="header-section-number">2.0.1.2</span> <code>defonce</code></a></li>
+  </ul></li>
+  <li><a href="#the-let-form" id="toc-the-let-form" class="nav-link" data-scroll-target="#the-let-form"><span class="header-section-number">2.0.2</span> The <code>let</code> Form</a></li>
+  <li><a href="#clojure-seqs-lists-and-vectors" id="toc-clojure-seqs-lists-and-vectors" class="nav-link" data-scroll-target="#clojure-seqs-lists-and-vectors"><span class="header-section-number">2.1</span> Clojure Seqs, Lists and Vectors</a></li>
+  <li><a href="#fixed-type-arrays-in-clojure" id="toc-fixed-type-arrays-in-clojure" class="nav-link" data-scroll-target="#fixed-type-arrays-in-clojure"><span class="header-section-number">2.2</span> Fixed-Type Arrays in Clojure</a></li>
+  <li><a href="#creating-arrays-and-buffers-from-clojure-seqs-lists-and-vectors" id="toc-creating-arrays-and-buffers-from-clojure-seqs-lists-and-vectors" class="nav-link" data-scroll-target="#creating-arrays-and-buffers-from-clojure-seqs-lists-and-vectors"><span class="header-section-number">2.3</span> Creating Arrays and Buffers from Clojure Seqs, Lists and Vectors</a>
+  <ul>
+  <li><a href="#dtype-next-and-the-buffer-interface" id="toc-dtype-next-and-the-buffer-interface" class="nav-link" data-scroll-target="#dtype-next-and-the-buffer-interface"><span class="header-section-number">2.3.1</span> <code>dtype-next</code> and the <code>buffer</code> interface</a></li>
+  </ul></li>
+  <li><a href="#creating-arrays-from-scratch" id="toc-creating-arrays-from-scratch" class="nav-link" data-scroll-target="#creating-arrays-from-scratch"><span class="header-section-number">2.4</span> Creating Arrays from Scratch</a></li>
+  <li><a href="#bottom" id="toc-bottom" class="nav-link" data-scroll-target="#bottom"><span class="header-section-number">3</span> Bottom</a></li>
   </ul>
 </nav>
     </div>
@@ -178,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Understanding Data Types in Clojure</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Understanding Data Types in Clojure DRAFT</span></h1>
 </div>
 
 
@@ -202,6 +207,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <style>.clay-limit-image-width .clay-image {max-width: 100%}
+.clay-side-by-side .sourceCode {margin: 0}
+.clay-side-by-side {margin: 1em 0}
 </style>
 <script src="pdshic.02_01_understanding_data_types_in_clojure_files/md-default0.js" type="text/javascript"></script>
 <script src="pdshic.02_01_understanding_data_types_in_clojure_files/md-default1.js" type="text/javascript"></script>
@@ -209,34 +216,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceClojure">
 <div class="sourceCode" id="cb1"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">ns</span> pdshic<span class="fl">.02</span><span class="dv">-01</span>-understanding-data-types-in-clojure</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="at">:require</span> [pdshic.util <span class="at">:as</span> util]</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>            [scicloj.kindly.v4.kind <span class="at">:as</span> kind]</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            [tablecloth.api <span class="at">:as</span> tc]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            [tech.v3.datatype <span class="at">:as</span> dtype]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            [tech.v3.tensor <span class="at">:as</span> dtt]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            [tech.v3.datatype.functional <span class="at">:as</span> fun]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>            [clojure.math <span class="at">:as</span> math]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            [fastmath.random <span class="at">:as</span> <span class="kw">rand</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            [scicloj.kindly.v4.kind <span class="at">:as</span> kind]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            [tablecloth.api <span class="at">:as</span> tc]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            [tech.v3.datatype <span class="at">:as</span> dtype]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            [tech.v3.tensor <span class="at">:as</span> dtt]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            [tech.v3.datatype.functional <span class="at">:as</span> fun]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Like Python, Clojure enjoys the benefits of dynamic typing. In Python any data can be assigned to any variable:</p>
 <p>Original python code:</p>
 <pre><code>x = 4
 x = "four"</code></pre>
 <p>Clojure Vars are akin to Python variables. When you use the <code>def</code> special form you create a Var and <a href="https://clojure.org/reference/vars#interning">intern</a> it under the provided symbol.</p>
+<p>The first argument to <code>def</code> is the symbol we’re assigning it to.</p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb3"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> x</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here we’ve created an unbound Var and assigned it to the symbol <code>x</code></p>
+<p>Here we’ve created an unbound Var and assigned it to the symbol <code>x</code>. When we look at its type, we get <code>clojure.lang.Var$Unbound</code>.</p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb4"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">type</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb5"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>clojure.lang.Keyword</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>clojure.lang.Var$Unbound</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>If we want to just look at the symbol itself, we can quote it.</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb6"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">type</span> <span class="at">'x</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">type</span> (quote x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
 <div class="sourceCode" id="cb7"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>clojure.lang.Symbol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can assign whatever data we wish to the Var.</p>
+<p>The second argument is whatever data we wish to intern in that Var.</p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb8"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> x </span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -246,6 +257,7 @@ x = "four"</code></pre>
 <div class="printedClojure">
 <div class="sourceCode" id="cb10"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Because Vars are mutable, we can redefine them later in our code.</p>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb11"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> x </span><span class="at">:four</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -255,16 +267,139 @@ x = "four"</code></pre>
 <div class="printedClojure">
 <div class="sourceCode" id="cb13"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="at">:four</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>But <code>def</code> is typically used at the top level, for data that needs to be available globally. When we’re inside a function definition, typically we will use a binding like with <code>let</code>:</p>
+<p>This behavior is similar behavior to Python variables and it can subtly introduce errors while you are exploring your data.</p>
+<p>Imagine you pull in a big set of real world data in desperate need of tidying up and assign that data to a Var under the symbol <code>real-data</code>.</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb14"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [x <span class="dv">4</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>      x <span class="at">:four</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>      x <span class="st">"four"</span>]</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> real-data </span>[<span class="at">:big</span> <span class="at">:old</span> <span class="at">:gnarly</span> <span class="at">:dataset</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then you do all the hard work of removing the old and gnarly data and assign it to the same Var…</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb15"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> real-data </span>(<span class="kw">remove</span> #{<span class="at">:old</span> <span class="at">:gnarly</span>} real-data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And then you remember, you had a function to update the old data…</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb16"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">defn</span><span class="fu"> update-old-&gt;new  </span>[data] (<span class="kw">if</span> (<span class="kw">=</span> <span class="at">:old</span> data)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">:new</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                          data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So you add this to your new <code>real-data</code> <code>def</code>. By now, you might have an inkling of where this is going.</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb17"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> real-data</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">-&gt;&gt;</span> real-data</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">map</span> update-old-&gt;new)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">remove</span> #{<span class="at">:gnarly</span>})))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb18"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>real-data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb15"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="st">"four"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">:big</span> <span class="at">:dataset</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>And the new data isn’t there!</p>
+<p>If you keep reassigning updated data to the same Var, you lose the ability to go back and insert new transformations or correct old ones. This can be complicated by the environment you are developing in. Using notebooks and REPLs make working with data like this a joy. You can test syntax and transformations before you commit to them. You can dig deep into the data using all the power available to you. But there are a few things you need to watch out for.</p>
+<p>Let’s take a look at the source code for this very file. The very first Clojure code you see in this chapter is:</p>
+<div class="printedClojure">
+<div class="sourceCode" id="cb20"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> x</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>But I wrote some hidden code before that:</p>
+<div class="printedClojure">
+<div class="sourceCode" id="cb21"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">ns-unmap</span> <span class="va">*ns*</span> <span class="at">'x</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>ns-unmap</code> takes a namespace and a symbol and removes the mapping of that symbol from the namespace. <code>*ns*</code> is shorthand for the current namespace. And the apostrophe before <code>x</code> is shorthand quoting the symbol <code>x</code> and not what <code>x</code> resolves to.</p>
+<p>I went through all this trouble because, once we started binding values to the Var <code>x</code>, the code <code>(type x)</code> would no longer give me the same results. <code>x</code> would be bound to whatever code was run last, and as I worked on the file, reevaluating things, that could be the number <code>4</code> or the keyword <code>:four</code> at various times.</p>
+<p>For this reason, it is recommended that you choose new, more descriptive symbols instead of reflexively assigning transformed data to an old Var.</p>
+<section id="a-couple-notes-about-vars" class="level3" data-number="2.0.1">
+<h3 data-number="2.0.1" class="anchored" data-anchor-id="a-couple-notes-about-vars"><span class="header-section-number">2.0.1</span> A Couple Notes About Vars</h3>
+<section id="doc-strings" class="level4" data-number="2.0.1.1">
+<h4 data-number="2.0.1.1" class="anchored" data-anchor-id="doc-strings"><span class="header-section-number">2.0.1.1</span> Doc-strings</h4>
+<p>You can attach metadata to Vars, which in turn means you can give them docstrings. If the second argument to a <code>def</code> is a string and there is a third argument, then that string will become the doc-string.</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb22"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> real-data</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Gathered from numberous sources, very few of them dubious."</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  [<span class="at">:big</span> <span class="at">:old</span> <span class="at">:gnarly</span> <span class="at">:dataset</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This not only provides you with a covenient place to remark on the data’s origin and the transformations it has been put through, but it also attaches those remarks to the Var’s metadata. At any later point, you can retrieve it programmatically like so:</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb23"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">-&gt;</span> (var real-data)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">meta</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">:doc</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb24"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="st">"Gathered from numberous sources, very few of them dubious."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="defonce" class="level4" data-number="2.0.1.2">
+<h4 data-number="2.0.1.2" class="anchored" data-anchor-id="defonce"><span class="header-section-number">2.0.1.2</span> <code>defonce</code></h4>
+<p>The macro <code>defonce</code> will work like <code>def</code>, but only if the Var given to it doesn’t already have a root value. This is useful when you are defining a Var through some expensive calculation or other process you don’t want repeated every time you evaluate the namespace.</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb25"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">defonce</span><span class="fu"> so-much-data </span>[<span class="at">:that</span> <span class="at">:takes</span> <span class="at">:awhile</span> <span class="at">:to</span> <span class="at">:downloaded</span> <span class="at">:from</span> <span class="at">:some</span> <span class="at">:url</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note: <code>defonce</code> does not prevent a <code>def</code> from rebinding the Var. It only prevents itself from redefining a Var that has already been defined.</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb26"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>so-much-data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb27"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>[<span class="at">:that</span> <span class="at">:takes</span> <span class="at">:awhile</span> <span class="at">:to</span> <span class="at">:downloaded</span> <span class="at">:from</span> <span class="at">:some</span> <span class="at">:url</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And then..</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb28"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">defonce</span><span class="fu"> so-much-data </span>[<span class="at">:much</span> <span class="at">:less</span> <span class="at">:data</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb29"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>so-much-data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb30"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>[<span class="at">:that</span> <span class="at">:takes</span> <span class="at">:awhile</span> <span class="at">:to</span> <span class="at">:downloaded</span> <span class="at">:from</span> <span class="at">:some</span> <span class="at">:url</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>…changes nothing. However…</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb31"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> so-much-data </span>[<span class="at">:changed</span> <span class="at">:data</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb32"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>so-much-data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb33"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>[<span class="at">:changed</span> <span class="at">:data</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>…will change your Var out from under on you.</p>
+</section>
+</section>
+<section id="the-let-form" class="level3" data-number="2.0.2">
+<h3 data-number="2.0.2" class="anchored" data-anchor-id="the-let-form"><span class="header-section-number">2.0.2</span> The <code>let</code> Form</h3>
+<p>In idiomatic Clojure, <code>def</code> is typically only used at the top level, for data that needs to be available globally. When we’re inside a function definition, we use <code>let</code> to create lexically scoped bindings:</p>
+<p>The second argument to a <code>let</code> expression is a vector of binding pairs. In the simpliest form, these are symbols and the expressions you wish to bind to these symbols. The rest of the <code>let</code> form is then evaluated with these symbols resolving to the expressions they are paired with. The <code>let</code> form itself evaluates to whatever the last form in its body evaluates to.</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb34"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [x <span class="dv">4</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>      y <span class="st">"four"</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>      z <span class="at">:iv</span>]</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a> {y x z x})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb35"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">"four"</span> <span class="dv">4</span>, <span class="at">:iv</span> <span class="dv">4</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Inside this <code>let</code> we are binding the integer <code>4</code> to the symbol <code>x</code>, the string <code>"string"</code> to the symbol <code>y</code>, and the keyword <code>:iv</code> to the symbol <code>z</code>. Then, in the body of the <code>let</code> expression we create a map literal with the values of <code>x</code> and <code>z</code> as keys and the value of <code>y</code> as the values.</p>
+<p>Outside of the <code>let</code> form, <code>x</code> retains the value we last defined it as.</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb36"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb37"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="at">:four</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It’s important to note that we are not creating variables. You cannot alter the values of these symbols in the body of the <code>let</code> except by introducing another <code>let</code> or similar binding form.</p>
+<p>However, inside the binding vector, the bindings are resolved in order, and you can redefine the same symbol. You can then use this to chain a series of transformations, each built on and overshadowing the previous values.</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb38"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [x <span class="at">:four</span>      <span class="co">; :four, a keyword</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>      x (<span class="kw">name</span> x)   <span class="co">; "four", the name String of the keyword :four</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>      x (<span class="kw">count</span> x)] <span class="co">; 4, the number of Characters in the String "four"</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb39"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because <code>let</code> keeps these definitions from leaking into the global context, we will be using in our examples whenever we need to bind something that we don’t want to be available globally.</p>
+</section>
+<section id="clojure-seqs-lists-and-vectors" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="clojure-seqs-lists-and-vectors"><span class="header-section-number">2.1</span> Clojure Seqs, Lists and Vectors</h2>
 <p>Original python code:</p>
 <pre><code>L = list(range(10))
 L
@@ -276,24 +411,28 @@ L
 L2
 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']</code></pre>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb19"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [l0 (<span class="kw">range</span> <span class="dv">10</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>      type-in-l0 (<span class="kw">type</span> (<span class="kw">first</span> l0))</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>      l1 (<span class="kw">map</span> <span class="kw">str</span> l0)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>      type-in-l1 (<span class="kw">type</span> (<span class="kw">first</span> l1))]</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  [type-in-l0 type-in-l1])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [l0 (<span class="kw">range</span> <span class="dv">10</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>      l1 (<span class="kw">map</span> <span class="kw">str</span> l0)]</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  {<span class="at">:l0</span> l0</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">:type-in-l0</span> (<span class="kw">type</span> (<span class="kw">first</span> l0))</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">:l1</span> l1</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">:type-in-l1</span> (<span class="kw">type</span> (<span class="kw">first</span> l1))})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb20"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>[java.lang.Long java.lang.String]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>{<span class="at">:l0</span> (<span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span> <span class="dv">9</span>),</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a> <span class="at">:type-in-l0</span> java.lang.Long,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a> <span class="at">:l1</span> (<span class="st">"0"</span> <span class="st">"1"</span> <span class="st">"2"</span> <span class="st">"3"</span> <span class="st">"4"</span> <span class="st">"5"</span> <span class="st">"6"</span> <span class="st">"7"</span> <span class="st">"8"</span> <span class="st">"9"</span>),</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a> <span class="at">:type-in-l1</span> java.lang.String}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Original python code:</p>
 <pre><code>L3 = [True, "2", 3.0, 4]
 [type(item) for item in L3]
 [bool, str, float, int]</code></pre>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb22"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> <span class="kw">type</span> [<span class="va">true</span> <span class="st">"2"</span> <span class="fl">3.0</span> <span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> <span class="kw">type</span> [<span class="va">true</span> <span class="st">"2"</span> <span class="fl">3.0</span> <span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb23"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(java.lang.Boolean java.lang.String java.lang.Double java.lang.Long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>(java.lang.Boolean java.lang.String java.lang.Double java.lang.Long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Original python code:</p>
 <pre><code>import array
@@ -301,26 +440,32 @@ L = list(range(10))
 A = array.array('i', L)
 A
 array('i', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre>
+</section>
+<section id="fixed-type-arrays-in-clojure" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="fixed-type-arrays-in-clojure"><span class="header-section-number">2.2</span> Fixed-Type Arrays in Clojure</h2>
+<p>Maybe talk a bit about Java’s relation to Clojure here?</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb25"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [L (<span class="kw">range</span> <span class="dv">10</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>      A (<span class="kw">int-array</span> L)]</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [L (<span class="kw">range</span> <span class="dv">10</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>      A (<span class="kw">int-array</span> L)]</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb26"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="creating-arrays-from-clojure-lists-and-vectors" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="creating-arrays-from-clojure-lists-and-vectors"><span class="header-section-number">2.1</span> Creating Arrays from Clojure Lists and Vectors</h2>
+</section>
+<section id="creating-arrays-and-buffers-from-clojure-seqs-lists-and-vectors" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="creating-arrays-and-buffers-from-clojure-seqs-lists-and-vectors"><span class="header-section-number">2.3</span> Creating Arrays and Buffers from Clojure Seqs, Lists and Vectors</h2>
 <p>Original python code:</p>
 <pre><code>import numpy as np
 # integer array:
 np.array([1, 4, 2, 5, 3])</code></pre>
+<p>Using the Clojure core function <code>to-array</code>, we can convert any Clojure collection into a Java array.</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb28"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [arr (dtype/-&gt;array [<span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span>])]</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  [(<span class="kw">type</span> arr) arr])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [arr (<span class="kw">to-array</span> [<span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span>])]</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  [(<span class="kw">type</span> arr) arr])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb29"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>[[Ljava.lang.Object<span class="co">; [1, 4, 2, 5, 3]]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>[[Ljava.lang.Object<span class="co">; [1, 4, 2, 5, 3]]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This notation <code>[Ljava.lang.Object;</code> with the open bracket at the beginning, but no closing bracket is the JVM’s way of saying, “An array of the following type.” What follows the <code>[</code> indicates the types in the array. In this case, the <code>Ljava.lang.Object;</code> means this is just a an array of objects.</p>
 <table class="caption-top table" data-quarto-postprocess="true">
@@ -370,42 +515,38 @@ np.array([1, 4, 2, 5, 3])</code></pre>
 </tbody>
 </table>
 <p><a href="https://docs.oracle.com/javase/9/docs/api/java/lang/Class.html#getName--">table source</a></p>
-<p>Anytime we don’t explicitly give it a datatype, it will be considered an array of objects. It is more useful to provide a type:</p>
+<p>So <code>to-array</code> returns an array of objects, but we can do better.</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb30"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [arr (dtype/-&gt;array <span class="at">:int</span> [<span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span>])]</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  [(<span class="kw">type</span> arr) arr])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [arr (<span class="kw">int-array</span> [<span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span>])]</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  [(<span class="kw">type</span> arr) arr])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb31"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>[[I [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>[[I [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Or…</p>
-<div class="sourceClojure">
-<div class="sourceCode" id="cb32"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [arr (dtype/-&gt;int-array [<span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span>])]</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  [(<span class="kw">type</span> arr) arr])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="printedClojure">
-<div class="sourceCode" id="cb33"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>[[I [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Here the notation <code>[I</code> means we’ve returned a Java array of ints. This is better. But a Java array is not the same thing as a Numpy array. There is no guarantee that a Java array will be stored in contiguous memory locations.</p>
+<section id="dtype-next-and-the-buffer-interface" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="dtype-next-and-the-buffer-interface"><span class="header-section-number">2.3.1</span> <code>dtype-next</code> and the <code>buffer</code> interface</h3>
 <p>Original python code:</p>
 <pre><code>np.array([3.14, 4, 2, 3])
 array([ 3.14,  4.  ,  2.  ,  3.  ])</code></pre>
-<div class="sourceClojure">
-<div class="sourceCode" id="cb35"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [arr (dtype/-&gt;array [<span class="fl">3.14</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span>])]</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  [(<span class="kw">type</span> arr) arr])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="printedClojure">
-<div class="sourceCode" id="cb36"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>[[Ljava.lang.Object<span class="co">; [3.14, 4, 2, 5, 3]]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Unlike Numpy, <code>dtype</code> won’t automatically infer the data type. It is better to be explicit.</p>
 <p>Original python code:</p>
 <pre><code>np.array([1, 2, 3, 4], dtype='float32')
 array([ 1.,  2.,  3.,  4.], dtype=float32)</code></pre>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb38"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [arr (dtype/-&gt;array <span class="at">:float</span> [<span class="fl">3.14</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span>])]</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  [(<span class="kw">type</span> arr) arr])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [buf (dtype/-&gt;reader [<span class="fl">3.14</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span>])]</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  [(dt/elemwise-datatype buf) buf])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb39"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>[[F [<span class="fl">3.14</span>, <span class="fl">4.0</span>, <span class="fl">2.0</span>, <span class="fl">5.0</span>, <span class="fl">3.0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>[<span class="at">:object</span> [<span class="fl">3.14</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Unlike Numpy, <code>dtype</code> won’t automatically infer the datatype. It is better to be explicit.</p>
+<p>You can provide <code>dtype/-&gt;reader</code> with a keyword argument indicating the type you want:</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb60"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [buf (dtype/-&gt;reader [<span class="fl">3.14</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span>] <span class="at">:float64</span>)]</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  [(dt/elemwise-datatype buf) buf])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb61"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>[<span class="at">:float64</span> [<span class="fl">3.14</span> <span class="fl">4.0</span> <span class="fl">2.0</span> <span class="fl">5.0</span> <span class="fl">3.0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Original python code:</p>
 <pre><code># nested lists result in multi-dimensional arrays
@@ -413,17 +554,205 @@ np.array([range(i, i + 3) for i in [2, 4, 6]])
 array([[2, 3, 4],
        [4, 5, 6],
        [6, 7, 8]])</code></pre>
-<p>We will use <code>tech.v3.tensor</code> as <code>dtt</code> to create multidimensional arrays. Here we indicate the data type in an options map at the end of the arguments list.</p>
+<p>We will use <code>tech.v3.tensor</code> as <code>dtt</code> to create n-dimensional buffers. Here we indicate the data type in an options map at the end of the arguments list.</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb41"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">-&gt;</span> (<span class="kw">map</span> (<span class="kw">fn</span> [n] (<span class="kw">range</span> n (<span class="kw">+</span> n <span class="dv">3</span>))) [<span class="dv">2</span> <span class="dv">4</span> <span class="dv">6</span>])</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    (dtt/-&gt;tensor {<span class="at">:datatype</span> <span class="at">:int</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">-&gt;</span> (<span class="kw">map</span> (<span class="kw">fn</span> [n] (<span class="kw">range</span> n (<span class="kw">+</span> n <span class="dv">3</span>))) [<span class="dv">2</span> <span class="dv">4</span> <span class="dv">6</span>])</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    (dtt/-&gt;tensor {<span class="at">:datatype</span> <span class="at">:int</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb42"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&amp;lt<span class="co">;int32&amp;gt;[3 3]</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span>]</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span>]</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&lt;int32&gt;[<span class="dv">3</span> <span class="dv">3</span>]</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span>]</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span>]</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+</section>
+<section id="creating-arrays-from-scratch" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="creating-arrays-from-scratch"><span class="header-section-number">2.4</span> Creating Arrays from Scratch</h2>
+<p>Original python code:</p>
+<pre><code># Create a length-10 integer array filled with zeros
+np.zeros(10, dtype=int)
+array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</code></pre>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb66"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> [buf (dtype/const-reader <span class="dv">0</span> <span class="dv">10</span>)]</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  [(dtype/elemwise-datatype buf) buf])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb67"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>[<span class="at">:int64</span> [<span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Original python code:</p>
+<pre><code># Create a 3x5 floating-point array filled with ones
+np.ones((3, 5), dtype=float)
+array([[ 1.,  1.,  1.,  1.,  1.],
+       [ 1.,  1.,  1.,  1.,  1.],
+       [ 1.,  1.,  1.,  1.,  1.]])</code></pre>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb69"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>(dtt/const-tensor <span class="fl">1.0</span> [<span class="dv">3</span> <span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb70"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&lt;float64&gt;[<span class="dv">3</span> <span class="dv">5</span>]</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>[[<span class="fl">1.000</span> <span class="fl">1.000</span> <span class="fl">1.000</span> <span class="fl">1.000</span> <span class="fl">1.000</span>]</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">1.000</span> <span class="fl">1.000</span> <span class="fl">1.000</span> <span class="fl">1.000</span> <span class="fl">1.000</span>]</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a> [<span class="fl">1.000</span> <span class="fl">1.000</span> <span class="fl">1.000</span> <span class="fl">1.000</span> <span class="fl">1.000</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Original python code:</p>
+<pre><code># Create a 3x5 array filled with 3.14
+np.full((3, 5), 3.14)
+array([[ 3.14,  3.14,  3.14,  3.14,  3.14],
+       [ 3.14,  3.14,  3.14,  3.14,  3.14],
+       [ 3.14,  3.14,  3.14,  3.14,  3.14]])</code></pre>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb72"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>(dtt/const-tensor <span class="fl">3.14</span> [<span class="dv">3</span> <span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb73"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&lt;float64&gt;[<span class="dv">3</span> <span class="dv">5</span>]</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>[[<span class="fl">3.140</span> <span class="fl">3.140</span> <span class="fl">3.140</span> <span class="fl">3.140</span> <span class="fl">3.140</span>]</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">3.140</span> <span class="fl">3.140</span> <span class="fl">3.140</span> <span class="fl">3.140</span> <span class="fl">3.140</span>]</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a> [<span class="fl">3.140</span> <span class="fl">3.140</span> <span class="fl">3.140</span> <span class="fl">3.140</span> <span class="fl">3.140</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Original python code:</p>
+<pre><code># Create an array filled with a linear sequence
+# Starting at 0, ending at 20, stepping by 2
+# (this is similar to the built-in range() function)
+np.arange(0, 20, 2)
+array([ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18])</code></pre>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb75"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>(dtype/make-reader <span class="at">:int</span> <span class="dv">10</span> (<span class="kw">*</span> idx <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb76"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span> <span class="dv">2</span> <span class="dv">4</span> <span class="dv">6</span> <span class="dv">8</span> <span class="dv">10</span> <span class="dv">12</span> <span class="dv">14</span> <span class="dv">16</span> <span class="dv">18</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Original python code:</p>
+<pre><code># Create an array of five values evenly spaced between 0 and 1
+np.linspace(0, 1, 5)
+array([ 0.  ,  0.25,  0.5 ,  0.75,  1.  ])</code></pre>
+<p>Obviously not all <code>numpy</code> or <code>pandas</code> code will have a <code>Clojure</code> doppleganger. But it is not terribly difficult to compose your own.</p>
+<p>To recreate <code>np.linspace</code> we’ll create a range of numbers, from 0 (inclusive) to the number of steps requested (exclusive). Then we divide each number by one less then the nubmer of steps and multiply it by a factor equal to the ending number minus the starting number. Finally, we add the starting number to each result.</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb78"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">defn</span><span class="fu"> linear-space </span>[begin end steps]</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  (dtype/make-reader <span class="at">:float</span> steps</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>                     (<span class="kw">+</span> begin</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>                        (<span class="kw">*</span> idx</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>                           (<span class="kw">/</span> (<span class="kw">-</span> end begin)</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>                              (<span class="kw">dec</span> steps))))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb79"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>(linear-space <span class="dv">0</span> <span class="dv">1</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb80"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>[<span class="fl">0.0</span> <span class="fl">0.25</span> <span class="fl">0.5</span> <span class="fl">0.75</span> <span class="fl">1.0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Original python code:</p>
+<pre><code># Create a 3x3 array of uniformly distributed
+# random values between 0 and 1
+np.random.random((3, 3))
+array([[ 0.99844933,  0.52183819,  0.22421193],
+       [ 0.08007488,  0.45429293,  0.20941444],
+       [ 0.14360941,  0.96910973,  0.946117  ]])</code></pre>
+<p>Here again, there is no convenience function in <code>dtype</code> or <code>tensor</code>, but it is not hard to fashion our own:</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb82"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>(dtt/compute-tensor [<span class="dv">3</span> <span class="dv">3</span>] (<span class="kw">fn</span> [&amp; _] (<span class="kw">rand</span>)) <span class="at">:float</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb83"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&lt;float&gt;[<span class="dv">3</span> <span class="dv">3</span>]</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>[[<span class="fl">0.9856</span> <span class="fl">0.04669</span> <span class="fl">0.2898</span>]</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.1741</span> <span class="fl">0.8962</span> <span class="fl">0.5511</span>]</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.3948</span> <span class="fl">0.01757</span> <span class="fl">0.6768</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Original python code:</p>
+<pre><code># Create a 3x3 array of normally distributed random values
+# with mean 0 and standard deviation 1
+np.random.normal(0, 1, (3, 3))
+array([[ 1.51772646,  0.39614948, -0.10634696],
+       [ 0.25671348,  0.00732722,  0.37783601],
+       [ 0.68446945,  0.15926039, -0.70744073]])</code></pre>
+<p>Okay, this will take some doing. The naive approach is to grab a random float in a reasonable range…</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb85"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">defn</span><span class="fu"> rand-float-in-range</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  [low high]</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">+</span> low (<span class="kw">*</span> (<span class="kw">-</span> high low) (<span class="kw">rand</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>…apply the probablity density function for the normal distribution to that random float…</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb86"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">defn</span><span class="fu"> normal-pdf</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  [mean sdev x]</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> [multiplier (<span class="kw">/</span> (math/sqrt (<span class="kw">*</span> <span class="dv">2</span> math/PI sdev sdev)))</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>        exponent (<span class="kw">/</span> (<span class="kw">-</span> (math/pow (<span class="kw">-</span> x mean) <span class="dv">2</span>))</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>                    (<span class="kw">*</span> <span class="dv">2</span> sdev sdev))]</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">*</span> multiplier (math/exp exponent))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>…then use that result to randomly determine if we accept or reject that value. If we reject it, we start all over until we find an acceptable result.</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb87"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">defn</span><span class="fu"> rand-dist </span>[dist low high]</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> [in-dist? (<span class="kw">fn</span> [x] (<span class="kw">when</span> (<span class="kw">&lt;=</span> (<span class="kw">rand</span>) (dist x)) x))]</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">loop</span> [x (in-dist? (rand-float-in-range -<span class="dv">4</span> <span class="dv">4</span>))]</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">if</span> x x (<span class="kw">recur</span> (in-dist? (rand-float-in-range -<span class="dv">4</span> <span class="dv">4</span>)))))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb88"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">defn</span><span class="fu"> rand-normal </span>[mean sdev]</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> [dist (<span class="kw">partial</span> normal-pdf mean sdev)]</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>    (rand-dist dist (<span class="kw">-</span> mean <span class="dv">4</span>) (<span class="kw">+</span> mean <span class="dv">4</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb89"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>(dtt/compute-tensor [<span class="dv">3</span> <span class="dv">3</span>] (<span class="kw">fn</span> [&amp; _] (rand-normal <span class="dv">0</span> <span class="dv">1</span>)) <span class="at">:float64</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb90"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&lt;float64&gt;[<span class="dv">3</span> <span class="dv">3</span>]</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>[[ -<span class="fl">1.086</span> -<span class="fl">0.002821</span>  -<span class="fl">1.593</span>]</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">0.2322</span> -<span class="fl">0.5377</span> -<span class="fl">0.8982</span>]</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a> [-<span class="fl">0.4184</span>  <span class="fl">0.3186</span> -<span class="fl">0.1868</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Original python code:</p>
+<pre><code># Create a 3x3 array of random integers in the interval [0, 10)
+np.random.randint(0, 10, (3, 3))
+array([[2, 3, 4],
+       [5, 7, 8],
+       [0, 5, 0]])</code></pre>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb92"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>(dtt/compute-tensor [<span class="dv">3</span> <span class="dv">3</span>] (<span class="kw">fn</span> [&amp; _] (<span class="kw">rand-int</span> <span class="dv">10</span>)) <span class="at">:int64</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb93"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&lt;int64&gt;[<span class="dv">3</span> <span class="dv">3</span>]</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">7</span> <span class="dv">7</span> <span class="dv">9</span>]</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">2</span> <span class="dv">3</span> <span class="dv">9</span>]</span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">2</span> <span class="dv">9</span> <span class="dv">6</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Original python code:</p>
+<pre><code># Create a 3x3 identity matrix
+np.eye(3)
+array([[ 1.,  0.,  0.],
+       [ 0.,  1.,  0.],
+       [ 0.,  0.,  1.]])</code></pre>
+<p>Using <code>dtt/compute-tensor</code> we can construct an identity matrix by checking placing a 1 wherever all the indices are equal and a 0 wherever they are not.</p>
+<div class="sourceClojure">
+<div class="sourceCode" id="cb95"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>(dtt/compute-tensor [<span class="dv">3</span> <span class="dv">3</span>]</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>                      (<span class="kw">fn</span> [&amp; args] (<span class="kw">if</span> (<span class="kw">apply</span> <span class="kw">=</span> args) <span class="dv">1</span> <span class="dv">0</span>))</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">:int64</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="printedClojure">
+<div class="sourceCode" id="cb96"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&lt;int64&gt;[<span class="dv">3</span> <span class="dv">3</span>]</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span>]</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">0</span> <span class="dv">1</span> <span class="dv">0</span>]</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Original python code:</p>
+<pre><code># Create an uninitialized array of three integers
+# The values will be whatever happens to already exist at that memory location
+np.empty(3)
+array([ 1.,  1.,  1.]) ```
+
+
+::: {.sourceClojure}
+```clojure
+(dtt/native-tensor [3] :int64)</code></pre>
+<p>:::</p>
+<div class="printedClojure">
+<div class="sourceCode" id="cb98"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>#tech.v3.tensor&lt;int64&gt;[<span class="dv">3</span>]</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="bottom" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Bottom</h1>
 <div style="background-color:grey;height:2px;width:100%;"></div>
 <div><pre><small><small>source: <a href="https://github.com/scicloj/python-data-science-handbook-in-clojure/blob/main/notebooks/pdshic/02_01_understanding_data_types_in_clojure.clj">notebooks/pdshic/02_01_understanding_data_types_in_clojure.clj</a></small></small></pre></div>
 
@@ -858,9 +1187,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pdshic.05_06_linear_regression.html" class="pagination-link" aria-label="In Depth: Linear Regression - DRAFT">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In Depth: Linear Regression - DRAFT</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
